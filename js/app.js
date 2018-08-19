@@ -1,6 +1,6 @@
 let startModal = document.querySelector(".start-modal");
 let overlay = document.querySelector(".overlay");
-let gameend = document.querySelector(".gameover");
+let gameend = document.querySelector(".gameend");
 let winningModal = document.querySelector(".winner-modal");
 
 var gamePoints = 0;
@@ -37,36 +37,28 @@ function youWon(){
 ///// Enemies
 
 // Enemies the player must avoid
-var Enemy = function(x, y) {
+var Enemy = function() {
   // Randomly sets the speed for each enemy
+  this.sprite = 'images/enemy-bug.png';
   this.speed = Math.round(Math.random() * 3) +1;
 
   // Sets position of the enemy.
-  // X coordinate ensures the enemy is off of the screen.
-  // Y coordinate ensures they land on concrete parts of the game.
+  // X coordinate ensures the enemy is off of the screen when it starts.
+  // Y coordinate ensures they land on grass parts of the game.
   // Sprite is the image of the enemy.
   setTimeout(()=> {
     this.x = -50
     this.y = [66, 149, 232] [Math.round(Math.random() * 2)];
   }, this.speed * 100);
-    this.sprite = 'images/enemy-bug.png';
-};
+  };
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 // Multiplies any movement to ensure that the game runs at the same speed
 // for all computers.
 
-
-var enemyY = this.y;
-var enemyX = this.x;
-
 Enemy.prototype.update = function(dt) {
   this.x = (this.x + dt * this.speed * 150) % (500);
-
-    enemyY = this.y;
-    enemyX = this.x;
-
   checkLives();
 };
 
@@ -81,10 +73,10 @@ Enemy.prototype.reset = function() {
 };
 
 // Positions the player
-function Player(x, y) {
+var Player = function (x, y) {
   this.sprite = 'images/char-boy.png';
-  this.x = 2 * 101;
-  this.y = 5 * 80;
+  this.x = x;
+  this.y = y;
 }
 
 var playerX
@@ -123,7 +115,7 @@ Player.prototype.reset = function() {
 }
 
 ////// Lives
-function Lives (x, y) {
+var Lives = function(x, y){
   this.sprite = 'images/Heart.png';
   this.x = x;
   this.y = y;
@@ -134,7 +126,7 @@ Lives.prototype.render = function() {
 }
 
 /////// Gems
-function Gem (x, y){
+var Gem = function(x, y){
   this.sprite = 'images/Gem-Orange.png';
   this.x = x;
   this.y = y;
@@ -145,13 +137,14 @@ Gem.prototype.render = function (){
 }
 
 /////// Winner
-function Winner (x, y) {
+var Winner = function(x, y) {
   this.x = x;
   this.y = y;
 }
 
 var winnerX
 var winnerY
+
 Winner.prototype.update = function(){
   winnerX = this.x;
   winnerY = this.y;
@@ -167,7 +160,7 @@ Winner.prototype.update = function(){
 }
 
 /////// points
-function Points (x, y, score) {
+var Points = function(x, y, score) {
   this.x = x;
   this.y = y;
   this.score = "Points: " + gamePoints;
@@ -197,7 +190,7 @@ for(var i = 0; i < 3; i++) {
 
 var allEnemies = [new Enemy(-50, 60), new Enemy(-50, 140), new Enemy(-50, 300)];
 
-var player = new Player();
+var player = new Player(202, 400);
 
 var allLives = [new Lives(410, 540), new Lives(440, 540), new Lives(470, 540)];
 
@@ -205,7 +198,7 @@ var allGems = [];
 
 var winnerSquares = [new Winner(0, 20), new Winner(100, 20), new Winner(200, 20), new Winner(300, 20), new Winner(400, 20)];
 
-var score = new Points(10, 570)
+var scores = new Points(10, 570)
 
 // This listens for key presesses and send the keys to the Player.handleInput()
 // method.

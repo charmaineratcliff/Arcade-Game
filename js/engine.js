@@ -97,20 +97,22 @@ var Engine = (function(global) {
         winnerSquares.forEach(function(Winner) {
           Winner.update();
         });
-        score.update();
+        scores.update();
     }
 
     function checkCollisions() {
-      allEnemies.forEach(function(enemy) {
-        if (player.x < enemy.x + enemy.width &&
-            player.x + player.width > enemy.x &&
-            player.y < enemy.y + enemy.height &&
-            player.height + player.y > enemy.y) {
-               // collision detected!
-              player.reset();
-            }
-          });
-      }
+      allEnemies.forEach(enemy => {
+        if ((playerY - enemy.y < 3 && playerY - enemy.y > -3) &&
+              (playerX - enemy.x < 5 && playerX - enemy.x > -5)) {
+              console.log('playerY - enemy.y', playerY - enemy.y);
+              allLives.pop();
+              gameLives -= 1;
+              if (gamePoints >= 50){
+                  gamePoints -= 50;
+              }
+        }
+      })
+    }
     /* This function initially draws the "game level", it will then call
      * the renderEntities function. Remember, this function is called every
      * game tick (or loop of the game engine) because that's how games work -
@@ -178,17 +180,17 @@ var Engine = (function(global) {
           gem.render();
         });
 
-        score.render();
+        scores.render();
     }
 
     /* This function has been updated to handle the game reset.
      * It's only called once by the init() method.
      */
     function reset() {
-      //player.reset();
-      //allEnemies.forEach(function(enemy) {
-      //  enemy.reset();
-      //});
+      player.reset();
+      allEnemies.forEach(function(enemy) {
+        enemy.reset();
+      });
     }
 
     /* Go ahead and load all of the images we know we're going to need to
