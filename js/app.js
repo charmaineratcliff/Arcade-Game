@@ -19,6 +19,10 @@ function gameOver() {
   overlay.classList.add("show");
 };
 
+function resetGame(){
+  window.location.reload(true);
+}
+
 function checkLives() {
   if(allLives.length === 0) {
     gameOver();
@@ -52,17 +56,17 @@ var Enemy = function(x, y) {
 // Parameter: dt, a time delta between ticks
 // Multiplies any movement to ensure that the game runs at the same speed
 // for all computers.
+
+
+var enemyY = this.y;
+var enemyX = this.x;
+
 Enemy.prototype.update = function(dt) {
   this.x = (this.x + dt * this.speed * 150) % (500);
 
-  if (parseInt(this.x)+ 100 >= playerX && parseInt(this.x) <= playerX + 40 && this.y === playerY){
-    player.reset();
-    allLives.pop();
-    gameLives -= 1
-    if (gamePoints >= 50) {
-        gamePoints -= 50;
-    }
-  }
+    enemyY = this.y;
+    enemyX = this.x;
+
   checkLives();
 };
 
@@ -77,7 +81,7 @@ Enemy.prototype.reset = function() {
 };
 
 // Positions the player
-function Player() {
+function Player(x, y) {
   this.sprite = 'images/char-boy.png';
   this.x = 2 * 101;
   this.y = 5 * 80;
@@ -108,11 +112,9 @@ Player.prototype.handleInput = function(move) {
   if(move === 'down') {
     this.y += this.y < 5 * 80 ? yMove : 0;
   }
-  if(move === 'up') {
-    if(this.y >= yMove) {
-      this.y -= yMove
+  if(move === 'up' && this.y > 18) {
+    this.y -= 83;
     }
-  }
 };
 
 Player.prototype.reset = function() {
@@ -121,7 +123,7 @@ Player.prototype.reset = function() {
 }
 
 ////// Lives
-function Lives (x,y) {
+function Lives (x, y) {
   this.sprite = 'images/Heart.png';
   this.x = x;
   this.y = y;
@@ -171,11 +173,12 @@ function Points (x, y, score) {
   this.score = "Points: " + gamePoints;
 }
 
-Points.prototype.render = function () {
-  ctx.font = '20px serif';
+Points.prototype.render = function() {
+  ctx.font = '20px sans-serif';
   ctx.fillText(this.score, this.x, this.y);
 }
-Points.prototype.update = function () {
+
+Points.prototype.update = function() {
   this.score = "Points: " + gamePoints;
 };
 
@@ -192,30 +195,17 @@ for(var i = 0; i < 3; i++) {
   }, 200)
 }
 
-// This listens for key presesses and send the keys to the Player.handleInput()
-// method.
-
-document.addEventListener('keyup', function(e) {
-    var allowedKeys = {
-        37: 'left',
-        38: 'up',
-        39: 'right',
-        40: 'down'
-    };
-    player.handleInput(allowedKeys[e.keyCode]);
-});
-
 var allEnemies = [new Enemy(-50, 60), new Enemy(-50, 140), new Enemy(-50, 300)];
 
 var player = new Player();
 
-var allLives = [new Lives(10, 540), new Lives(40, 540), new Lives(70, 540)];
+var allLives = [new Lives(410, 540), new Lives(440, 540), new Lives(470, 540)];
 
 var allGems = [];
 
 var winnerSquares = [new Winner(0, 20), new Winner(100, 20), new Winner(200, 20), new Winner(300, 20), new Winner(400, 20)];
 
-var score = new Points(350, 570)
+var score = new Points(10, 570)
 
 // This listens for key presesses and send the keys to the Player.handleInput()
 // method.
