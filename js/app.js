@@ -23,13 +23,6 @@ function resetGame(){
   window.location.reload(true);
 }
 
-function resetGameWon(){
-    gameend.classList.add("hide");
-    overlay.classList.add("hide");
-    gamePoints = 0;
-    gameLives = 3;
-}
-
 function checkLives() {
   if(allLives.length === 0) {
     gameOver();
@@ -47,7 +40,7 @@ function youWon(){
 var Enemy = function() {
   // Randomly sets the speed for each enemy
   this.sprite = 'images/enemy-bug.png';
-  this.speed = Math.round(Math.random() * 3) +1;
+  this.speed = Math.round(Math.random() * 2) +1;
 
   // Sets position of the enemy.
   // X coordinate ensures the enemy is off of the screen when it starts.
@@ -140,7 +133,7 @@ var Gem = function(x, y){
 }
 
 Gem.prototype.render = function (){
-  ctx.drawImage(Resources.get(this.sprite), this.x, this.y, 85, 145);
+  ctx.drawImage(Resources.get(this.sprite), this.x, this.y, 95, 145);
 }
 
 /////// Winner
@@ -166,7 +159,7 @@ Winner.prototype.update = function(){
   }
 }
 
-/////// points
+/////// Points
 var Points = function(x, y, score) {
   this.x = x;
   this.y = y;
@@ -174,7 +167,7 @@ var Points = function(x, y, score) {
 }
 
 Points.prototype.render = function() {
-  ctx.font = '20px sans-serif';
+  ctx.font = '16px sans-serif';
   ctx.fillText(this.score, this.x, this.y);
 }
 
