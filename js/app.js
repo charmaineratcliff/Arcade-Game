@@ -74,7 +74,7 @@ Enemy.prototype.reset = function() {
 
 // Positions the player
 var Player = function (x, y) {
-  this.sprite = 'images/char-boy.png';
+  this.sprite = 'images/char-princess-girl.png';
   this.x = x;
   this.y = y;
 }

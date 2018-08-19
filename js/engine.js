@@ -104,7 +104,6 @@ var Engine = (function(global) {
       allEnemies.forEach(enemy => {
         if ((playerY - enemy.y <= 3 && playerY - enemy.y >= -3) &&
               (playerX - enemy.x <= 5 && playerX - enemy.x >= -5)) {
-              console.log('playerY - enemy.y', playerY - enemy.y);
               reset();
               allLives.pop();
               gameLives -= 1;
@@ -203,7 +202,7 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-boy.png',
+        'images/char-princess-girl.png',
         'images/Heart.png',
         'images/Gem-Orange.png'
     ]);

@@ -4,6 +4,10 @@ body {
     font-weight: 300;
 }
 
+h1 {
+  color: #C00;
+}
+
 .overlay {
    position: absolute;
    top: 0;
