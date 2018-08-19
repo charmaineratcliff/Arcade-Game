@@ -62,7 +62,7 @@ button {
   background: #fff;
   border-radius: 5px;
   width: 400px;
-  height: 400px;
+  height: 200px;
   position: absolute;
   transition: all 1s ease-in-out;
   font-family: "Open Sans", sans-serif;

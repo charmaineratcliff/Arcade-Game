@@ -149,7 +149,7 @@ Winner.prototype.update = function(){
   winnerX = this.x;
   winnerY = this.y;
 
-  if ((-Math.abs(winnerY)) == playerY && this.x == playerX) {
+  if ((-Math.abs(winnerY)) == playerY && winnerX == playerX) {
     allGems.push(new Gem(winnerX, winnerY));
     gamePoints += 100;
     player.reset();
@@ -196,7 +196,7 @@ var allLives = [new Lives(410, 540), new Lives(440, 540), new Lives(470, 540)];
 
 var allGems = [];
 
-var winnerSquares = [new Winner(0, 20), new Winner(100, 20), new Winner(200, 20), new Winner(300, 20), new Winner(400, 20)];
+var winnerSquares = [new Winner(0, -15), new Winner(101, -15), new Winner(202, -15), new Winner(303, -15), new Winner(404, -15)];
 
 var scores = new Points(10, 570)
 

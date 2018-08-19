@@ -105,6 +105,7 @@ var Engine = (function(global) {
         if ((playerY - enemy.y < 3 && playerY - enemy.y > -3) &&
               (playerX - enemy.x < 5 && playerX - enemy.x > -5)) {
               console.log('playerY - enemy.y', playerY - enemy.y);
+              reset();
               allLives.pop();
               gameLives -= 1;
               if (gamePoints >= 50){
