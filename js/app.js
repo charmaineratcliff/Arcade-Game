@@ -23,6 +23,13 @@ function resetGame(){
   window.location.reload(true);
 }
 
+function resetGameWon(){
+    gameend.classList.add("hide");
+    overlay.classList.add("hide");
+    gamePoints = 0;
+    gameLives = 3;
+}
+
 function checkLives() {
   if(allLives.length === 0) {
     gameOver();
@@ -133,7 +140,7 @@ var Gem = function(x, y){
 }
 
 Gem.prototype.render = function (){
-  ctx.drawImage(Resources.get(this.sprite), this.x, this.y, 90, 130);
+  ctx.drawImage(Resources.get(this.sprite), this.x, this.y, 85, 145);
 }
 
 /////// Winner

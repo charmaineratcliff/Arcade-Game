@@ -4,10 +4,6 @@ body {
     font-weight: 300;
 }
 
-canvas {
-  margin-top: -4em;
-}
-
 .overlay {
    position: absolute;
    top: 0;
@@ -28,7 +24,7 @@ canvas {
   position: absolute;
   transition: all 1s ease-in-out;
   font-family: "Open Sans", sans-serif;
-  top: 125px;
+  top: 100px;
   left: 0;
   right: 0;
 }
@@ -59,14 +55,15 @@ button {
 .gameend, .winner-modal {
   margin: 0 auto;
   padding: 20px;
-  background: #fff;
+  background: #000;
+  color: #fff;
   border-radius: 5px;
   width: 400px;
   height: 200px;
   position: absolute;
   transition: all 1s ease-in-out;
   font-family: "Open Sans", sans-serif;
-  top: 125px;
+  top: 100px;
   left: 0;
   right: 0;
   visibility: hidden;
